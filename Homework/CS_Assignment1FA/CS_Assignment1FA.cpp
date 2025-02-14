@@ -7,10 +7,17 @@ int main()
 	//*Main code*//
 	//*Variable Declarations*//
 	float final_temperature;
-	double C;
+
+	double C = -1;
+    //will loop until its not true//
+    while (C < 0 || C > 200)
+    {
+        cout << "Type in your temperature: ";
+	    cin >> C;
+    }
+
+
 	//*C for Celsius*//
 
-	cout << "Type in your temperature?!: ";
-	cin >> C;
 	return 0;
 }
