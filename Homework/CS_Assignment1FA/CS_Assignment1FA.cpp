@@ -10,7 +10,7 @@ int main()
 	double C;
 	//*C for Celsius*//
 
-	cout << "Type in your temperature?: ";
+	cout << "Type in your temperature?!: ";
 	cin >> C;
 	return 0;
 }
