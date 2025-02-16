@@ -1,23 +1,25 @@
-// CSAssignment1FA.cpp Felipe and Ayaan, Feb 12th, 2025//
+//*CSAssignment1FA.cpp Felipe and Ayaan, Feb 12th, 2025*//
 #include <iostream>
 using namespace std;
 
+//Main code//
 int main()
 {  
-	//*Main code*//
-	//*Variable Declarations*//
-	float final_temperature;
+	//Variable Declarations for Celsius and Fahrenheit//
+	float Celsius;
+	double Fahrenheit;
 
-	double C = -1;
-    //will loop until its not true//
-    while (C < 0 || C > 200)
-    {
-        cout << "Type in your temperature: ";
-	    cin >> C;
-    }
+	//Ask the user to enter temperature//
+	cout << "Enter temperature in Cahrenheit (Up to two decimal places): ";
+	cin >> Celsius;
 
+	//Convert Celsius to Fahrenheit//
+	Fahrenheit = (1.8 * Celsius) + 32;
 
-	//*C for Celsius*//
+	//Print the explanation and the result of the convertion//
+	cout << "\nFormula used: Fahrenheit = (1.8 * Celsius) + 32\n";
+	cout << "You entered: " << Celsius << " degrees Celsius" << endl;
+	cout << "Your temperature of: " << Celsius << " degrees Celsius is: " << Fahrenheit << " in degrees Fahrenheit. ";
 
 	return 0;
 }
