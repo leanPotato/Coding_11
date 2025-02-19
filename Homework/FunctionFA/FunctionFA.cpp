@@ -3,8 +3,8 @@
 #include <cmath>
 using namespace std;
 
-int main()
-{
+int main() {
+	
 	const double COST_PER_SQ_FT = 10.50;
 	double budget, area, length_side;
 
@@ -23,4 +23,5 @@ int main()
 		<< " feet on each side.\n";
 
 	return 0;
+	
 }
