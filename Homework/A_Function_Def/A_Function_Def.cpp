@@ -3,8 +3,8 @@ using namespace std;
 
 double total_cost(int number_par, double price_par);
 
-int main()
-{
+int main() {
+
     double price, bill;
 
     int number;
@@ -25,13 +25,15 @@ int main()
     << endl;
 
     return 0;
+
 }
 
-double total_cost(int number_par, double price_par)
-{
+double total_cost(int number_par, double price_par) {
+        
         const double TAX_RATE = 0.05;
         double subtotal;
 
         subtotal = price_par * number_par;
         return (subtotal + subtotal * TAX_RATE);
+
 }
