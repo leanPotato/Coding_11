@@ -3,8 +3,8 @@
 using namespace std;
 
 //Main code//
-int main()
-{  
+int main() {  
+	
 	//Variable Declarations for Celsius and Fahrenheit//
 	float Celsius;
 	double Fahrenheit;
@@ -22,4 +22,5 @@ int main()
 	cout << "Your temperature of: " << Celsius << " degrees Celsius is: " << Fahrenheit << " in degrees Fahrenheit. ";
 
 	return 0;
+	
 }
