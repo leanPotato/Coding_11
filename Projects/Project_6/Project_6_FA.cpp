@@ -5,12 +5,11 @@
 using namespace std;
 
 // Defining functions
-double give_Gross_Pay(double hours_Worked, float PAYMENT_PER_HOUR = 16.78, float SOCIAL_SECURITY_TAX = 0.06,
-float FEDERAL_INCOME_TAX = 0.14, float STATE_INCOME_TAX = 0.05, float UNION_DUES = 10, float WITHHELD_DEPENDENTS = 35,
-float OVERTIME_RATE = 1.5); // Calculate gross pay
+void calc_Gross_and_Tax(double amount, double dependents); // Calculate gross and tax
 
 int main() {
 
+	// State local variables
 	double hours_Worked, dependents;
 	
 	// Ask user for their hours worked and amount of dependents
@@ -19,31 +18,38 @@ int main() {
 	cout << "Input the amount of dependents you have:      ";
 	cin >> dependents;
 	cout << "\n------------------------------------------------\n";
-	
+
+	// Call function to do calculation
+	calc_Gross_and_Tax(hours_Worked, dependents);
+
 	return 0;
 	
 }
 
-// Calculate gross pay
-double give_Gross_Pay(double hours_Worked, float PAYMENT_PER_HOUR = 16.78, float SOCIAL_SECURITY_TAX = 0.06,
-float FEDERAL_INCOME_TAX = 0.14, float STATE_INCOME_TAX = 0.05, float UNION_DUES = 10, 
-float WITHHELD_DEPENDENTS = 35, float OVERTIME_RATE = 1.5) {
+// Calculate gross and tax
+void calc_Gross_and_Tax(double amount, double dependents) {
 	
-	// Calculate gross pay (No overtime included yet)
-	return PAYMENT_PER_HOUR * hours_Worked;
-
-	// State all variables
+	const float PAYMENT_PER_HOUR = 16.78;
+	const float SOCIAL_SECURITY_TAX = 0.06;
+	const float FEDERAL_INCOME_TAX = 0.14;
+	const float UNION_DUES = 10;
+	const float WITHHELD_DEPENDENTS = 35;
+	const float OVERTIME_RATE = 1.5;
+	const float STATE_INCOME_TAX = 0.05;
+	
+	// State local variables
 	double gross_Pay, new_Social_Security_Tax, new_Federal_Tax,
-		new_State_Tax, take_Home_Pay, dependents, overtime_Payment;
+		   new_State_Tax, take_Home_Pay, overtime_Payment;
 
-	gross_Pay = give_Gross_Pay(hours_Worked, PAYMENT_PER_HOUR, SOCIAL_SECURITY_TAX,
-			    FEDERAL_INCOME_TAX, STATE_INCOME_TAX, UNION_DUES,
-		        WITHHELD_DEPENDENTS, OVERTIME_RATE);
-	overtime_Payment = gross_Pay + ((hours_Worked * PAYMENT_PER_HOUR) * OVERTIME_RATE);
-
-	cout.setf(ios::fixed);      // Setting the output to fixed-point
+    cout.setf(ios::fixed);      // Setting the output to fixed-point
 	cout.setf(ios::showpoint);  // Setting a decimal point must
 	cout.precision(2); 		    // Setting 2 decimal places
+
+	// Calculate gross pay (No overtime included yet)
+	gross_Pay = PAYMENT_PER_HOUR * hours_Worked;
+
+	// Calculate overtime gross pay
+	overtime_Payment = gross_Pay + ((hours_Worked * PAYMENT_PER_HOUR) * OVERTIME_RATE);
 
 	// If hours worked > 40, then gross pay has overtime included
 	if (hours_Worked > 40) {
@@ -86,6 +92,6 @@ float WITHHELD_DEPENDENTS = 35, float OVERTIME_RATE = 1.5) {
 	cout << "Your Union dues is:          $" << UNION_DUES << endl;
 	cout << "Your Net take home pay is:   $" << take_Home_Pay << endl;
 
-	return 0;
+	return;
 
 }
