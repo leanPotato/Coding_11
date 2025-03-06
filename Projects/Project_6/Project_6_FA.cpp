@@ -1,12 +1,12 @@
 /****************************************************************************************
-*																						*
-*	Title:   Programming Project 6														*
-*	Author:  Felipe and Ayaan															*
-*	Date:    03/03/2025 																*
-*	Purpose: The program is trying to find your gross pay, each withholding amount,	    *
-*			 and the net take-home pay depending on your input hours per week and 		*
-*			 number of dependents														*
-*																						*
+*                                                                                       *
+*	Title:   Programming Project 6                                                      *
+*	Author:  Felipe and Ayaan                                                           *
+*	Date:    03/03/2025                                                                 *
+*	Purpose: The program is trying to find your gross pay, each withholding amount,     *
+*			 and the net take-home pay depending on your input hours per week and       *
+*			 number of dependents                                                       *
+*                                                                                       *
 *****************************************************************************************/
 
 #include <iostream>
