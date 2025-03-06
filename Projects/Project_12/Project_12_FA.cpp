@@ -1,4 +1,12 @@
-/* Programming project 12 Felipe and Ayaan - 26/02/2025 */
+/****************************************************************************************
+*																						*
+*	Title:   Programming project 12														*
+*	Author:  Felipe and Ayaan															*
+*	Date:    26/02/2025																	*
+*	Purpose: The program is trying to find your gross pay, each withholding ammount,	*
+*			 and the net take-home pay depending on your input							*
+*																						*
+*****************************************************************************************/
 
 #include <iostream>
 using namespace std;
