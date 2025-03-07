@@ -109,6 +109,11 @@ void calc_Gross_and_Tax(double hoursWorked, double dependents) {
 
 	}
 
+	// Calculate the rest of the taxes based on the correct gross pay that was calculated earlier
+	newSocialSecurityTax = SOCIAL_SECURITY_TAX * grossPay;
+	newFederalTax = FEDERAL_INCOME_TAX * grossPay;
+	newStateTax = STATE_INCOME_TAX * grossPay;
+	
 	// If dependents >= 3, then take home pay will include withheld dependents
 	if (dependents >= 3) {
 
@@ -121,11 +126,6 @@ void calc_Gross_and_Tax(double hoursWorked, double dependents) {
 		takeHomePay = grossPay - newSocialSecurityTax - newFederalTax - newStateTax - UNION_DUES;
 
 	}
-
-	// Calculate the rest of the taxes based on the correct gross pay that was calculated earlier
-	newSocialSecurityTax = SOCIAL_SECURITY_TAX * grossPay;
-	newFederalTax = FEDERAL_INCOME_TAX * grossPay;
-	newStateTax = STATE_INCOME_TAX * grossPay;
 
 	// Show all taxes at the end
 	cout << "Your Security tax is:        $" << newSocialSecurityTax << endl;
