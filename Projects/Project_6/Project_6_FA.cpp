@@ -93,18 +93,17 @@ void calc_Gross_and_Tax(double hoursWorked, double dependents) {
 	cout.setf(ios::showpoint);  // Setting a decimal point must
 	cout.precision(2); 		    // Setting 2 decimal places
 
-	// Calculate gross pay (No overtime included yet)
-	grossPay = PAYMENT_PER_HOUR * hoursWorked;
-
 	// If hours worked > 40, then gross pay has overtime included
 	if (hoursWorked > 40) {
 
 		// Updates gross pay with overtime payment
-		grossPay = grossPay + ((hoursWorked * PAYMENT_PER_HOUR) * OVERTIME_RATE);
+		grossPay = (PAYMENT_PER_HOUR * 40) + (((hoursWorked - 40) * PAYMENT_PER_HOUR) * OVERTIME_RATE);
 		cout << "\nIf you worked more than 40 hours,\nyour Gross payment is:       $" << grossPay << endl;
 
 	} else {  // If hours worked < 40, then gross has NO overtime included
 
+		// Calculate gross pay (No overtime included)
+		grossPay = PAYMENT_PER_HOUR * hoursWorked;
 		// Original gross pay is left untouched
 		cout << "\nIf you worked less than 40 hours,\nyour Gross payment is:       $" << grossPay << endl;
 
