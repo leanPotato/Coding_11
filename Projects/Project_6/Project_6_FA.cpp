@@ -75,6 +75,9 @@ void calc_Gross_and_Tax(double hoursWorked, double dependents) {
 	if (hoursWorked <= 0) {
 		cout << "Hours worked needs to be more than 0.\n";
 		return;
+	} if (dependents < 0) {
+		cout << "Dependents cannot be negative.\n";
+		return;
 	}
 
 	const float PAYMENT_PER_HOUR = 16.78;
@@ -113,7 +116,7 @@ void calc_Gross_and_Tax(double hoursWorked, double dependents) {
 	newSocialSecurityTax = SOCIAL_SECURITY_TAX * grossPay;
 	newFederalTax = FEDERAL_INCOME_TAX * grossPay;
 	newStateTax = STATE_INCOME_TAX * grossPay;
-	
+
 	// If dependents >= 3, then take home pay will include withheld dependents
 	if (dependents >= 3) {
 
