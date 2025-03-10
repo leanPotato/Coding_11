@@ -15,7 +15,7 @@ using namespace std;
 
 // Defining functions
 void display_Intro();  // Function to display intro banner
-void calc_Gross_and_Tax(double hoursWorked=0, double dependents=0);  // Calculate gross and tax
+void calc_Gross_and_Tax(double hoursWorked, double dependents, double PAYMENT_PER_HOUR);  // Calculate gross and tax
 
 int main() {
 
@@ -26,7 +26,7 @@ int main() {
 	char isRepeat = 'y'; 
 
 	// While loop dependent on yes or no
-	while (isRepeat == 'y') {
+	while (isRepeat == 'y' || isRepeat == 'Y') {
 
 		// Call title banner
 		display_Intro();
@@ -39,12 +39,12 @@ int main() {
 		cout << "\n------------------------------------------------\n";
 
 		// Call function to do calculation
-		calc_Gross_and_Tax(hoursWorked, dependents);
+		calc_Gross_and_Tax(hoursWorked, dependents, 16.78);
 		cout << "\n\nWould you like to repeat the program again? (y/n): ";  // Ask if program wants to be runned again
 		cin >> isRepeat;
 
 		// Check if isRepeat is y
-		if (isRepeat != 'y') {
+		if (isRepeat != 'y' && isRepeat != 'Y') {
 			cout << "\nThanks for watching!";  // Output thank you message
 		} else {
 			cout << "\n####################################################\n";  // Display a barrier for new line
@@ -69,7 +69,7 @@ void display_Intro() {
 }
 
 // Calculate gross and tax
-void calc_Gross_and_Tax(double hoursWorked, double dependents) {
+void calc_Gross_and_Tax(double hoursWorked, double dependents, double PAYMENT_PER_HOUR) {
 	
 	// Makes sure that hours worked >= 0
 	if (hoursWorked <= 0) {
@@ -80,7 +80,6 @@ void calc_Gross_and_Tax(double hoursWorked, double dependents) {
 		return;
 	}
 
-	const float PAYMENT_PER_HOUR = 16.78;
 	const float SOCIAL_SECURITY_TAX = 0.06;
 	const float FEDERAL_INCOME_TAX = 0.14;
 	const float UNION_DUES = 10;
