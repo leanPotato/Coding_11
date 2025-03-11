@@ -15,12 +15,12 @@ using namespace std;
 
 // Defining functions
 void display_Intro();  // Function to display intro banner
-void calc_Gross_and_Tax(double hoursWorked, double dependents, double PAYMENT_PER_HOUR);  // Calculate gross and tax
+double calc_Gross_and_Tax(double hoursWorked, double dependents, double PAYMENT_PER_HOUR);  // Calculate gross and tax
 
 int main() {
 
 	// State local variables
-	double hoursWorked, dependents;
+	double hoursWorked, dependents , take_Home_Pay;
 	
 	// isRepeat is set as yes so you can run it the first time
 	char isRepeat = 'y'; 
@@ -39,7 +39,10 @@ int main() {
 		cout << "\n------------------------------------------------\n";
 
 		// Call function to do calculation
-		calc_Gross_and_Tax(hoursWorked, dependents, 16.78);
+		take_Home_Pay = calc_Gross_and_Tax(hoursWorked, dependents, 16.78);
+        cout << "\n------------------------------------------------\n";
+        cout << "\nWe have saved your take\nhome net pay in a file as:   $" << take_Home_Pay << endl;
+        cout << "\n------------------------------------------------\n";
 		cout << "\n\nWould you like to repeat the program again? (y/n): ";  // Ask if program wants to be runned again
 		cin >> isRepeat;
 
@@ -69,15 +72,15 @@ void display_Intro() {
 }
 
 // Calculate gross and tax
-void calc_Gross_and_Tax(double hoursWorked, double dependents, double PAYMENT_PER_HOUR) {
+double calc_Gross_and_Tax(double hoursWorked, double dependents, double PAYMENT_PER_HOUR) {
 	
 	// Makes sure that hours worked >= 0
 	if (hoursWorked <= 0) {
 		cout << "Hours worked needs to be more than 0.\n";
-		return;
+		return 0;
 	} if (dependents < 0) {
 		cout << "Dependents cannot be negative.\n";
-		return;
+		return 0;
 	}
 
 	const float SOCIAL_SECURITY_TAX = 0.06;
@@ -136,5 +139,5 @@ void calc_Gross_and_Tax(double hoursWorked, double dependents, double PAYMENT_PE
 	cout << "Your Union dues is:          $" << UNION_DUES << endl;
 	cout << "Your Net take home pay is:   $" << takeHomePay << endl;
 
-	return;
+	return takeHomePay;
 }
