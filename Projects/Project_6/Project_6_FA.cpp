@@ -49,6 +49,7 @@ int main() {
 		// Check if isRepeat is y
 		if (isRepeat != 'y' && isRepeat != 'Y') {
 			cout << "\nThanks for watching!";  // Output thank you message
+			cout << "\n\n####################################################\n\n";
             system("pause");  // Pause until user presses any key
 		} else {
 			cout << "\n####################################################\n";  // Display a barrier for new line
@@ -77,10 +78,10 @@ double calc_Gross_and_Tax(double hoursWorked, double dependents, double PAYMENT_
 	
 	// Makes sure that hours worked >= 0
 	if (hoursWorked <= 0) {
-		cout << "Hours worked needs to be more than 0.\n";
+		cout << "\nHours worked needs to be more than 0.\n";
 		return 0;
 	} if (dependents < 0) {
-		cout << "Dependents cannot be negative.\n";
+		cout << "\nDependents cannot be negative.\n";
 		return 0;
 	}
 
