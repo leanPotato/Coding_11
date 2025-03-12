@@ -57,7 +57,7 @@ int main() {
 	}
 
 	return 0;
-}
+} 
 
 // Displays intro panel
 void display_Intro() {
