@@ -49,7 +49,7 @@ int main() {
 		// Check if isRepeat is y
 		if (isRepeat != 'y' && isRepeat != 'Y') {
 			cout << "\nThanks for watching!";  // Output thank you message
-            system("pause");  // Pause until user presses button
+            system("pause");  // Pause until user presses any key
 		} else {
 			cout << "\n####################################################\n";  // Display a barrier for new line
 		}
