@@ -20,7 +20,7 @@ double calc_Gross_and_Tax(double hoursWorked, double dependents, double PAYMENT_
 int main() {
 
 	// State local variables
-	double hoursWorked, dependents , take_Home_Pay;
+	double hoursWorked, dependents , takeHomePay;
 	
 	// isRepeat is set as yes so you can run it the first time
 	char isRepeat = 'y'; 
@@ -36,13 +36,14 @@ int main() {
 		cin >> hoursWorked;
 		cout << "Input the amount of dependents you have:      ";
 		cin >> dependents;
-		cout << "\n------------------------------------------------\n";
+		cout << "\n-----------------------------------------------\n";
 
 		// Call function to do calculation
-		take_Home_Pay = calc_Gross_and_Tax(hoursWorked, dependents, 16.78);
-        cout << "\n------------------------------------------------\n";
-        cout << "\nWe have saved your take\nhome net pay in a file as:   $" << take_Home_Pay << endl;
-        cout << "\n------------------------------------------------\n";
+		takeHomePay = calc_Gross_and_Tax(hoursWorked, dependents, 16.78);   // Get take home pay from function
+		
+		cout << "-----------------------------------------------\n";
+		cout << "We have saved your take\nhome net pay in a file as:   $" << takeHomePay << endl;
+		cout << "-----------------------------------------------\n";
 		cout << "\n\nWould you like to repeat the program again? (y/n): ";  // Ask if program wants to be runned again
 		cin >> isRepeat;
 
@@ -76,13 +77,16 @@ void display_Intro() {
 // Calculate gross and tax
 double calc_Gross_and_Tax(double hoursWorked, double dependents, double PAYMENT_PER_HOUR) {
 	
-	// Makes sure that hours worked >= 0
+	//  Makes sure that hours worked >= 0
 	if (hoursWorked <= 0) {
-		cout << "\nHours worked needs to be more than 0.\n";
-		return 0;
-	} if (dependents < 0) {
-		cout << "\nDependents cannot be negative.\n";
-		return 0;
+		cout << "  ### HOURS WORKED HAS TO BE MORE THAN 0. ###\n";
+		return 0;  // Error number
+	} 
+
+	//  Makes sure that dependents is >= 0 
+	if (dependents < 0) {
+		cout << "  ### DEPENDENTS CANNOT BE NEGATIVE. ###\n";
+		return 0;	// Error number
 	}
 
 	const float SOCIAL_SECURITY_TAX = 0.06;
