@@ -20,7 +20,7 @@ int main() {
     Number = rand() % 100;
     Number++;
 
-    while (Guess != Number) {
+    while (Guess != Number || Guess != 0) {
 
         cout << "Enter a number between 1 and 100: ";
         cin >> Guess;
@@ -34,9 +34,26 @@ int main() {
 
             cout << "You are guessing high." << endl;
         }
+
+        if (Guess > 4) {
+            
+            cout << "You have too many guesses!" << endl;
+            return 0;
+
+        }
     }
 
-    cout << "You got it bud, the winning number is: " << Number << endl;
+    if (Guess == 0) {
+
+        cout << "Too many guesses bud!";
+
+    }
+    
+    else {
+
+        cout << "You got it bud, the winning number is: " << Number << endl;
+
+    }
 
     return 0;
 }
