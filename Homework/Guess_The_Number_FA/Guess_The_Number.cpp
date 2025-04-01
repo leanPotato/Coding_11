@@ -16,42 +16,42 @@ int main() {
 
     short Number;
     short Guess = 0;
+    short Guesses = 0;
 
     Number = rand() % 100;
     Number++;
 
-    while (Guess != Number || Guess != 0) {
+    while (Guess != Number) {
 
         cout << "Enter a number between 1 and 100: ";
         cin >> Guess;
+        Guesses++;
 
         if (Guess < Number) {
 
             cout << "You are guessing low." << endl;
+
         }
 
-        if (Guess > Number) {
+        else if (Guess > Number) {
 
             cout << "You are guessing high." << endl;
+
         }
 
-        if (Guess > 4) {
-            
+        else {
+
+            cout << "You got it bud, the winning number is: " << Number << endl;
+            break;
+
+        }
+
+        if (Guesses >= 5) {
+
             cout << "You have too many guesses!" << endl;
-            return 0;
+            break;
 
         }
-    }
-
-    if (Guess == 0) {
-
-        cout << "Too many guesses bud!";
-
-    }
-    
-    else {
-
-        cout << "You got it bud, the winning number is: " << Number << endl;
 
     }
 
