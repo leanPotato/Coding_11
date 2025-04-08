@@ -8,7 +8,7 @@
 *****************************************************************************************/
 
 #include <iostream>
-#include <sdtlib.h>
+#include <stdlib.h>
 #include <time.h>
 
 using namespace std;
@@ -20,7 +20,7 @@ short DoDiceThrow(void);
 unsigned short DoMoneyCalc(short Dice, short Bet, short BetMoney);
 unsigned long GetAmount(void);
 
-main(void) {
+int main(void) {
 
     unsigned long MoneyEarned;
     unsigned long Money;
@@ -40,13 +40,13 @@ main(void) {
         Bet = GetBet();
         BetMoney = GetAmount();
         DiceValue = DoDiceThrow();
-        MoneyEarned = DoMoneyCalc(DiceValue, Bet, Betmoney);
+        MoneyEarned = DoMoneyCalc(DiceValue, Bet, BetMoney);
 
         Money -= BetMoney;
 
         if (MoneyEarned == 0) {
 
-            cout << "You won " << MoneyEarned = BetMoney;
+            cout << "You won " << MoneyEarned;
             cout << " dollars. Number was: " << DiceValue;
             cout << endl << endl;
 
@@ -139,13 +139,13 @@ unsigned short DoMoneyCalc(short Dice, short Bet, short BetMoney) {
         if ((Dice == 6) || (Dice == 8)) {
             MoneyEarned = BetMoney * 1.5;
         }
-        break; break;
+        break;
 
     case 2:
         if ((Dice == 10) || (Dice == 4)) {
             MoneyEarned = BetMoney * 2.5;
         }
-        break; break;
+        break;
 
     case 3:
         if ((Dice == 2) || (Dice == 12)) {
