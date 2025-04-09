@@ -37,32 +37,41 @@ int main(void) {
        
         char isRepeat = 'y';
 
-        while(isRepeat == 'y' || isRepeat == 'Y') {
+        while (isRepeat == 'y' || isRepeat == 'Y') {
 
             ShowInformation(Money);
 
             Bet = GetBet();
-            
-            if (GetBet == 0) {
-                cout << "\n\nWould you like to repeat the program again? (y/n): ";  // Ask if program wants to be runned again
+
+            if (Bet == 0) {
+                cout << "\nWould you like to repeat the program again? (y/n): ";  // Ask if program wants to be runned again
                 cin >> isRepeat;
+                if (isRepeat != 'y' && isRepeat != 'Y') {
+                    cout << "\nThanks for watching!";  // Output thank you message
+                    cout << "\n\n####################################################\n\n";
+                    system("pause");  // Pause until user presses any key
+                }
+                else {
+                    cout << "\n####################################################\n";  // Display a barrier for new line
+                }
             }
             else {
-                BetMoney    = GetAmount();
-                DiceValue   = DoDiceThrow();
+                BetMoney = GetAmount();
+                DiceValue = DoDiceThrow();
                 MoneyEarned = DoMoneyCalc(DiceValue, Bet, BetMoney);
 
-                Money -= BetMoney;
+                Money += BetMoney;
+
+                if (MoneyEarned == 0) {
+
+                    cout << "You won " << MoneyEarned;
+                    cout << " dollars. Number was: " << DiceValue;
+                    cout << endl << endl;
+
+                    Money -= MoneyEarned;
+                }
             }
-            if (MoneyEarned == 0) {
-
-                cout << "You won " << MoneyEarned;
-                cout << " dollars. Number was: " << DiceValue;
-                cout << endl << endl;
-
-                Money += MoneyEarned;
-            }
-
+        }
             // Check if isRepeat is y
             if (isRepeat != 'y' && isRepeat != 'Y') {
                 cout << "\nThanks for watching!";  // Output thank you message
@@ -73,7 +82,6 @@ int main(void) {
                 cout << "\n####################################################\n";  // Display a barrier for new line
             }
 
-        }
         
     } while (Money > 100);
     cout << "Game Over. Keep $" << Money << " for the ride home";
@@ -122,7 +130,7 @@ short GetBet(void) {
         return BetType;
     }
     else {
-        cout << "Please enter a valid number.";
+        cout << "Please enter a valid number.\n";
         return 0;
     }
 }
@@ -133,12 +141,6 @@ short DoDiceThrow(void) {
 
     srand(time(NULL));
     DiceValue = (rand() % 12) + 1;
-
-    if ((DiceValue == 4) || (DiceValue == 10) || (DiceValue == 2) || (DiceValue == 12)
-       ||(DiceValue == 6) || (DiceValue == 8) || (DiceValue == 3) || (DiceValue == 9)) {
-        srand(time(NULL));
-        DiceValue = (rand() % 12) + 1;
-    }
 
     return DiceValue;
 }
@@ -157,7 +159,7 @@ unsigned short DoMoneyCalc(short Dice, short Bet, short BetMoney) {
 
     case 2:
         if ((Dice == 4) || (Dice == 10)) {
-            MoneyEarned = BetMoney * 2.5;
+            MoneyEarned = BetMoney * 2.5+
         }
         break;
 
@@ -181,7 +183,7 @@ unsigned short DoMoneyCalc(short Dice, short Bet, short BetMoney) {
     return MoneyEarned;
 }
 
-unsigned long GetAmount(void) {
+unsigned long GetAmount(void) {     
 
     unsigned short BetAmount;
 
@@ -197,4 +199,3 @@ unsigned long GetAmount(void) {
 
     return BetAmount;
 }
-
