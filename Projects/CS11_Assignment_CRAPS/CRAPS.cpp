@@ -10,14 +10,20 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
+#include <cstdlib>
+#include <ctime>
+#include <chrono>
 
 using namespace std;
+using std::chrono::duration_cast;
+using std::chrono::system_clock;
+using std::chrono::microseconds;
 
 void ShowIntroScreen(void);
 void ShowInformation(unsigned long Money);
 short GetBet(void);
 short DoDiceThrow(void);
-unsigned short DoMoneyCalc(short Dice, short Bet, short BetMoney);
+unsigned short DoMoneyCalc(short DiceValue, short Bet, short BetMoney);
 unsigned long GetAmount(void);
 
 int main(void) {
@@ -32,60 +38,55 @@ int main(void) {
     ShowIntroScreen();
     Money = 1000;
 
-
     do {
        
         char isRepeat = 'y';
 
         while (isRepeat == 'y' || isRepeat == 'Y') {
 
-            ShowInformation(Money);
+            while (Money >= 100) {
+                ShowInformation(Money);
 
-            Bet = GetBet();
+                Bet = GetBet();
 
-            if (Bet == 0) {
-                cout << "\nWould you like to repeat the program again? (y/n): ";  // Ask if program wants to be runned again
-                cin >> isRepeat;
-                if (isRepeat != 'y' && isRepeat != 'Y') {
-                    cout << "\nThanks for watching!";  // Output thank you message
-                    cout << "\n\n####################################################\n\n";
-                    system("pause");  // Pause until user presses any key
+                if (Bet == 0) {
+                    Bet = GetBet();
                 }
                 else {
-                    cout << "\n####################################################\n";  // Display a barrier for new line
-                }
-            }
-            else {
-                BetMoney = GetAmount();
-                DiceValue = DoDiceThrow();
-                MoneyEarned = DoMoneyCalc(DiceValue, Bet, BetMoney);
+                    BetMoney = GetAmount();
+                    DiceValue = DoDiceThrow();
+                    MoneyEarned = DoMoneyCalc(DiceValue, Bet, BetMoney);
 
-                Money += BetMoney;
+                    Money -= BetMoney;
 
-                if (MoneyEarned == 0) {
+                    if (MoneyEarned == 0) {
 
-                    cout << "You won " << MoneyEarned;
-                    cout << " dollars. Number was: " << DiceValue;
-                    cout << endl << endl;
+                        cout << "You lost. Number was: " << DiceValue;
+                        cout << endl << endl;
+                    }
+                    else {
+                        cout << "You won " << MoneyEarned - BetMoney;
+                        cout << " dollars. Number was: " << DiceValue;
+                        cout << endl << endl;
 
-                    Money -= MoneyEarned;
+                        Money += MoneyEarned;
+                    }
                 }
             }
         }
-            // Check if isRepeat is y
-            if (isRepeat != 'y' && isRepeat != 'Y') {
-                cout << "\nThanks for watching!";  // Output thank you message
-                cout << "\n\n####################################################\n\n";
-                system("pause");  // Pause until user presses any key
-            }
-            else {
-                cout << "\n####################################################\n";  // Display a barrier for new line
-            }
-
-        
-    } while (Money > 100);
-    cout << "Game Over. Keep $" << Money << " for the ride home";
-    cout << endl;
+        cout << "Game Over. Keep $" << Money << " for the ride home";
+        cout << endl;
+        cout << "\nWould you like to play again? (y/n): ";  // Ask if program wants to be runned again
+        cin >> isRepeat;
+        if (isRepeat != 'y' && isRepeat != 'Y') {
+            cout << "\nThanks for watching!";  // Output thank you message
+            cout << "\n\n####################################################\n\n";
+            system("pause");  // Pause until user presses any key
+        }
+        else {
+            cout << "\n####################################################\n";  // Display a barrier for new line
+        }
+    } 
 
     return 0;
 }
@@ -138,39 +139,48 @@ short GetBet(void) {
 short DoDiceThrow(void) {
 
     short DiceValue;
+    short DiceValue1;
+    short DiceValue2;
 
-    srand(time(NULL));
-    DiceValue = (rand() % 12) + 1;
+    srand(duration_cast<microseconds>(system_clock::now().time_since_epoch()).count());
+    int randomNumber1 = rand();
+    DiceValue1 = (randomNumber1 % 6) + 1;
+
+    srand(duration_cast<microseconds>(system_clock::now().time_since_epoch()).count());
+    int randomNumber2 = rand();
+    DiceValue2 = (randomNumber2 % 6) + 1;
+
+    DiceValue = (DiceValue1 + DiceValue2);
 
     return DiceValue;
 }
 
-unsigned short DoMoneyCalc(short Dice, short Bet, short BetMoney) {
+unsigned short DoMoneyCalc(short DiceValue, short Bet, short BetMoney) {
 
     unsigned long MoneyEarned = 0;
 
     switch (Bet) {
 
     case 1:
-        if ((Dice == 2) || (Dice == 12)) {
+        if ((DiceValue == 2) || (DiceValue == 12)) {
             MoneyEarned = BetMoney * 5;
         }
         break;
 
     case 2:
-        if ((Dice == 4) || (Dice == 10)) {
-            MoneyEarned = BetMoney * 2.5+
+        if ((DiceValue == 4) || (DiceValue == 10)) {
+            MoneyEarned = BetMoney * 2.5;
         }
         break;
 
     case 3:
-        if ((Dice == 6) || (Dice == 8)) {
+        if ((DiceValue == 6) || (DiceValue == 8)) {
             MoneyEarned = BetMoney * 1.5;
         }
         break;
 
     case 4:
-        if ((Dice == 3) || (Dice == 9)) {
+        if ((DiceValue == 3) || (DiceValue == 9)) {
             MoneyEarned = BetMoney * 1.7;
         }
         break;
