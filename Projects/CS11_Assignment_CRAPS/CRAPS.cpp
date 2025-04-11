@@ -10,8 +10,6 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
-#include <cstdlib>
-#include <ctime>
 #include <chrono>
 
 using namespace std;
@@ -34,59 +32,64 @@ int main(void) {
     short DiceValue;
     short Bet;
     short BetMoney;
-    
+    char isRepeat = 'y';
+
     ShowIntroScreen();
     Money = 1000;
 
     do {
-       
-        char isRepeat = 'y';
 
-        while (isRepeat == 'y' || isRepeat == 'Y') {
+        do {
 
-            while (Money >= 100) {
-                ShowInformation(Money);
+            ShowInformation(Money);
 
+            do {
+                
                 Bet = GetBet();
 
-                if (Bet == 0) {
-                    Bet = GetBet();
-                }
-                else {
-                    BetMoney = GetAmount();
-                    DiceValue = DoDiceThrow();
-                    MoneyEarned = DoMoneyCalc(DiceValue, Bet, BetMoney);
+            } while (Bet == 0);
 
-                    Money -= BetMoney;
+            BetMoney = GetAmount();
+            DiceValue = DoDiceThrow();
+            MoneyEarned = DoMoneyCalc(DiceValue, Bet, BetMoney);
 
-                    if (MoneyEarned == 0) {
+            Money -= BetMoney;
 
-                        cout << "You lost. Number was: " << DiceValue;
-                        cout << endl << endl;
-                    }
-                    else {
-                        cout << "You won " << MoneyEarned - BetMoney;
-                        cout << " dollars. Number was: " << DiceValue;
-                        cout << endl << endl;
+            if (MoneyEarned == 0) {
 
-                        Money += MoneyEarned;
-                    }
-                }
+                cout << "You lost. Number was: " << DiceValue;
+                cout << endl << endl;
+
+            } else {
+
+                cout << "You won " << MoneyEarned - BetMoney;
+                cout << " dollars. Number was: " << DiceValue;
+                cout << endl << endl;
+
+                Money += MoneyEarned;
+
             }
-        }
+
+        } while (Money >= 100);
+
         cout << "Game Over. Keep $" << Money << " for the ride home";
         cout << endl;
         cout << "\nWould you like to play again? (y/n): ";  // Ask if program wants to be runned again
         cin >> isRepeat;
+
         if (isRepeat != 'y' && isRepeat != 'Y') {
+
             cout << "\nThanks for watching!";  // Output thank you message
             cout << "\n\n####################################################\n\n";
             system("pause");  // Pause until user presses any key
-        }
-        else {
+
+        } else {
+
             cout << "\n####################################################\n";  // Display a barrier for new line
+
         }
-    } 
+
+    } while (isRepeat == 'y' || isRepeat == 'Y');
 
     return 0;
 }
@@ -105,9 +108,10 @@ void ShowIntroScreen(void) {
     cout << "You have 1000 dollars to start gambling.";
     cout << endl;
     cout << "You can do three different bets. You can bet on ";
-    cout << "numbers 2 and 12 which will give you a win ratio of 5 to 1 if you win. " << endl;
-    cout << "You can also bet on the numbers 4 and 10 which will give you a win ratio of 2.5 to 1. " << endl;
-    cout << "The last kind of bet you can do is on the numbers 6 and 8 which will give you a win ratio of 1.5 to 1. ";
+    cout << "numbers 2 or 12 which will give you a win ratio of 5 to 1 if you win. " << endl;
+    cout << "You can also bet on the numbers 4 or 10 which will give you a win ratio of 2.5 to 1. " << endl;
+    cout << "You can also bet on the numbers 3 or 9 which will give you a win ratio of 1.7 to 1. " << endl;
+    cout << "The last kind of bet you can do is on the numbers 6 or 8 which will give you a win ratio of 1.5 to 1. ";
     cout << endl << endl;
 
     cout << "The minimum amount to bet is 10 dollars and the maximum 100 dollars.";
@@ -123,17 +127,26 @@ void ShowInformation(unsigned long Money) {
 }
 
 short GetBet(void) {
-    unsigned short BetType;
+
+    long Input;
+    long BetType = 0;
+
     cout << "Enter type of bet (1 = '2/12' 2 = '4/10' 3 = '6/8' 4 = '3/9'): ";
-    cin >> BetType;
+    cin >> Input;
+    BetType = stoi(Input);
 
     if ((BetType == 1) || (BetType == 2) || (BetType == 3) || (BetType == 4)) {
+
         return BetType;
-    }
-    else {
-        cout << "Please enter a valid number.\n";
+
+    } else {
+
+        cout << BetType << endl;
+        cout << "\nPlease enter a valid number.\n";
         return 0;
+
     }
+
 }
 
 short DoDiceThrow(void) {
