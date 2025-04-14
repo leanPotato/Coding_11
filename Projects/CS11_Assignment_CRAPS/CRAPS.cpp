@@ -70,7 +70,7 @@ int main(void) {
 
             }
 
-        } while (Money >= 100);
+        } while (Money >= 101);
 
         cout << "Game Over. Keep $" << Money << " for the ride home";
         cout << endl;
@@ -97,22 +97,34 @@ int main(void) {
 void ShowIntroScreen(void) {
 
     cout << endl;
-    cout << "############################" << endl;
-    cout << "#                          #" << endl;
-    cout << "#   WELCOME TO CRAPS 1.0!  #" << endl;
-    cout << "#                          #" << endl;
-    cout << "############################" << endl << endl;
-    cout << "Here are the rules:";
-    cout << endl << endl;
-
-    cout << "You have 1000 dollars to start gambling.";
+    cout << "           ############################           " << endl;
+    cout << "           #                          #           " << endl;
+    cout << "           #   WELCOME TO CRAPS 1.0!  #           " << endl;
+    cout << "           #                          #           " << endl;
+    cout << "           ############################           " << endl;
     cout << endl;
-    cout << "You can do three different bets. You can bet on ";
-    cout << "numbers 2 or 12 which will give you a win ratio of 5 to 1 if you win. " << endl;
-    cout << "You can also bet on the numbers 4 or 10 which will give you a win ratio of 2.5 to 1. " << endl;
-    cout << "You can also bet on the numbers 3 or 9 which will give you a win ratio of 1.7 to 1. " << endl;
-    cout << "The last kind of bet you can do is on the numbers 6 or 8 which will give you a win ratio of 1.5 to 1. ";
-    cout << endl << endl;
+
+    cout << "**************************************************" << endl;
+    cout << "*                                                *" << endl;
+    cout << "* ---------------- HOW TO PLAY ----------------- *" << endl;
+    cout << "*                                                *" << endl;
+    cout << "*    YOU HAVE 1000 DOLLARS TO START GAMBLING!    *" << endl;
+    cout << "*                                                *" << endl;
+    cout << "*       You can do three different bets.         *" << endl;
+    cout << "* You can bet on numbers 2 or 12 which will give *" << endl;
+    cout << "*     you a win ratio of 5 to 1 if you win.      *" << endl;
+    cout << "* You can also bet on the numbers 4 or 10 which  *" << endl;
+    cout << "*     will give you a win ratio of 2.5 to 1.     *" << endl;
+    cout << "*  You can also bet on the numbers 3 or 9 which  *" << endl;
+    cout << "*     will give you a win ratio of 1.7 to 1.     *" << endl;
+    cout << "*   The last kind of bet you can do is on the    *" << endl;
+    cout << "*        numbers 6 or 8 which will give          *" << endl;
+    cout << "*         you a win ratio of 1.5 to 1.           *" << endl;
+    cout << "*                                                *" << endl;
+    cout << "* ---------------- END OF RULES ---------------- *" << endl;
+    cout << "*                                                *" << endl;
+    cout << "**************************************************" << endl;
+    cout << endl;
 
     cout << "The minimum amount to bet is 10 dollars and the maximum 100 dollars.";
     cout << endl << endl;
@@ -128,12 +140,10 @@ void ShowInformation(unsigned long Money) {
 
 short GetBet(void) {
 
-    long Input;
-    long BetType = 0;
+    long BetType;
 
     cout << "Enter type of bet (1 = '2/12' 2 = '4/10' 3 = '6/8' 4 = '3/9'): ";
-    cin >> Input;
-    BetType = stoi(Input);
+    cin >> BetType;
 
     if ((BetType == 1) || (BetType == 2) || (BetType == 3) || (BetType == 4)) {
 
