@@ -140,7 +140,7 @@ void ShowInformation(unsigned long Money) {
 
 short GetBet(void) {
 
-    long BetType;
+    char BetType;
 
     cout << "Enter type of bet (1 = '2/12' 2 = '4/10' 3 = '6/8' 4 = '3/9'): ";
     cin >> BetType;
@@ -151,7 +151,6 @@ short GetBet(void) {
 
     } else {
 
-        cout << BetType << endl;
         cout << "\nPlease enter a valid number.\n";
         return 0;
 
