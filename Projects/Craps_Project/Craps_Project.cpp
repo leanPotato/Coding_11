@@ -10,6 +10,12 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
+#include <chrono>
+
+using namespace std;
+using std::chrono::duration_cast;
+using std::chrono::system_clock;
+using std::chrono::microseconds;
 
 using namespace std;
 
@@ -63,33 +69,30 @@ int main(void) {
     }
 
     while (Money > 100);
-    cout << "Game Over. Keep $" << Money << " for the ride home." << endl;
-
+    cout << "Looks like you haven't had much luck. Keep $" << Money << " for the ride home.";
+    cout << "         Don't tell the cops and we won't tell your partner" << endl;
     return 0;
 }
 
 void ShowIntroScreen(void) {
 
-    cout << "     Welcome to Craps 1.0" << endl;
-    cout << "Here are the rules:" << endl;
+    cout << "\n#######################################################" << endl;
+    cout << "\n*            Welcome to Underground Craps               *" << endl;
+    cout << "*                Here are the rules:                    *" << endl << endl;
+    cout << "*     You have 1000 dollars to start gambling.          *" << endl;
+    cout << "*          You can do three different bets.             *" << endl;
+    cout << "*   You can bet on numbers 2 and 12 which will give     *" << endl;
+    cout << "*            you a win ratio of 5 to 1.                 *" << endl;
+    cout << "*     You can also bet on the numbers 4 and 10          *" << endl;
+    cout << "*   which will give you a win ratio of 2.5 to 1.        *" << endl;
+    cout << "*  The last kind of bet you can do is on the numbers    *" << endl;
+    cout << "* 6 and 8 which will give you a win ratio of 1.5 to 1.  *" << endl << endl;
 
+    cout << "*    The minimum amount to bet is 10 dollars and the    *" << endl;
+    cout << "*            maximum is 100 dollars.                    *" << endl << endl;
+    cout << "#########################################################" << endl << endl;
 
-    cout << "You have 1000 dollars to start gambling. " << endl;
-
-
-    cout << "You can do three different bets. You can bet on ";
-    cout << "numbers 2 and 12 which will give";
-    cout << " you a win ratio of ";
-    cout << "5 to 1. You can also bet on the numbers 4 ";
-    cout << "and 10";
-    cout << "which will give you a win ratio of 2.5 to 1." << endl;
-    cout << "The last kind of bet you can do is on the numbers 6 ";
-    cout << "and 8 which will give you a wion ration of 1.5 to 1" << endl;
-
-    cout << "The minimum amount to bet is 10 dollars and the ";
-    cout << "maximum is 100 dollars." << endl;
-
-    cout << "Have fun playing!" << endl;
+    cout << "               Have fun playing!" << endl << endl;
 }
 
 void ShowInformation(unsigned long Money) {
@@ -106,7 +109,7 @@ short GetBet(void) {
         return BetType;
     }
      else if ((BetType != 1) && (BetType != 2) && (BetType != 3) && (BetType != 4)) {
-        cout << "That is an invalid input. Please insert a valid input." << endl;
+        cout << "That is an invalid input. Please insert a valid input:" << endl;
         cin >> BetType;
     }
 
@@ -118,33 +121,22 @@ short GetBet(void) {
 short DoDiceThrow(void) {
 
     short DiceValue;
+    short DV1;
+    short DV2;
 
-    srand(time(NULL));
-    DiceValue = (rand() % 12) + 1;
+    srand(duration_cast<microseconds>(system_clock::now().time_since_epoch()).count());
+    int numberRand1 = rand();
+    DV1 = (numberRand1 % 6) + 1;
 
-    if ((DiceValue == 4) || (DiceValue == 10)) {
-        srand(time(NULL));
-        DiceValue = (rand() % 12) + 1;
-    }
+    srand(duration_cast<microseconds>(system_clock::now().time_since_epoch()).count());
+    int numberRand2 = rand();
+    DV2 = (numberRand2 % 6) + 1;
 
-    if ((DiceValue == 2) || (DiceValue == 12)) {
-        srand(time(NULL));
-        DiceValue = (rand() % 12) + 1;
-    }
-
-    if ((DiceValue == 6) || (DiceValue == 8)) {
-        srand(time(NULL));
-        DiceValue = (rand() % 12) + 1;
-    }
-
-    if ((DiceValue == 3) || (DiceValue == 9)) {
-        srand(time(NULL));
-        DiceValue = (rand() % 12) + 1;
-    }
-
+    DiceValue = (DV1 + DV2);
 
     return DiceValue;
 }
+
 
 unsigned short DoMoneyCalc(short Dice, short Bet, short BetMoney) {
 
