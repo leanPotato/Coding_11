@@ -1,13 +1,13 @@
 /****************************************************************************************
- *                                                                                       *
+ *                                                                                      *
  *	Title:   Craps Project 6                                                            *
  *	Author:  Ayaan                                                                      *
  *	Date:    03/03/2025                                                                 *
  *	Purpose: The program is trying to operate a fully functioning craps game            *
- *                                                                                       *
- *****************************************************************************************/
+ *                                                                                      *
+ ****************************************************************************************/
 
-#include <iostream>
+#include <iostream>                              //Libraries
 #include <stdlib.h>
 #include <time.h>
 #include <chrono>
@@ -19,7 +19,7 @@ using std::chrono::microseconds;
 
 using namespace std;
 
-void ShowIntroScreen(void);
+void ShowIntroScreen(void);                                             //Functions
 void ShowInformation(unsigned long Money);
 short GetBet(void);
 short DoDiceThrow(void);
@@ -47,9 +47,9 @@ int main(void) {
         ShowInformation(Money);
 
         // Get bet info */
-        Bet = GetBet();
-        BetMoney = GetAmount();
-        DiceValue = DoDiceThrow();
+        Bet         = GetBet();
+        BetMoney    = GetAmount();
+        DiceValue   = DoDiceThrow();
         MoneyEarned = DoMoneyCalc(DiceValue, Bet, BetMoney);
 
         Money -= BetMoney;
@@ -69,35 +69,37 @@ int main(void) {
     }
 
     while (Money > 100);
-    cout << "Looks like you haven't had much luck. Keep $" << Money << " for the ride home.";
-    cout << "         Don't tell the cops and we won't tell your partner" << endl;
+    cout << "\n########################################################################";
+    cout << "\n*  Looks like you haven't had much luck. Keep $" << Money << " for the ride home.  *";
+    cout << "\n*  Don't tell the cops and we won't tell your partner...               *\n";
+    cout << "########################################################################";
     return 0;
 }
 
 void ShowIntroScreen(void) {
 
-    cout << "\n#######################################################" << endl;
-    cout << "\n*            Welcome to Underground Craps               *" << endl;
-    cout << "*                Here are the rules:                    *" << endl << endl;
-    cout << "*     You have 1000 dollars to start gambling.          *" << endl;
-    cout << "*          You can do three different bets.             *" << endl;
-    cout << "*   You can bet on numbers 2 and 12 which will give     *" << endl;
-    cout << "*            you a win ratio of 5 to 1.                 *" << endl;
-    cout << "*     You can also bet on the numbers 4 and 10          *" << endl;
-    cout << "*   which will give you a win ratio of 2.5 to 1.        *" << endl;
-    cout << "*  The last kind of bet you can do is on the numbers    *" << endl;
-    cout << "* 6 and 8 which will give you a win ratio of 1.5 to 1.  *" << endl << endl;
+    cout << "\n##########################################################";
+    cout << "\n*             Welcome to Underground Craps               *" << endl;
+    cout << "*                 Here are the rules:                    *\n";
+    cout << "*                                                        *";
+    cout << "\n*        You have 1000 dollars to start gambling.        *" << endl;
+    cout << "*           You can do three different bets.             *" << endl;
+    cout << "*    You can bet on numbers 2 and 12 which will give     *" << endl;
+    cout << "*               you a win ratio of 5 to 1.               *" << endl;
+    cout << "*      You can also bet on the numbers 4 and 10          *" << endl;
+    cout << "*    which will give you a win ratio of 2.5 to 1.        *" << endl;
+    cout << "*   The last kind of bet you can do is on the numbers    *" << endl;
+    cout << "*  6 and 8 which will give you a win ratio of 1.5 to 1.  *" << endl;
+    cout << "*     The minimum amount to bet is 10 dollars and the    *" << endl;
+    cout << "*                maximum is 100 dollars.                 *" << endl;
+    cout << "##########################################################" << endl << endl;
 
-    cout << "*    The minimum amount to bet is 10 dollars and the    *" << endl;
-    cout << "*            maximum is 100 dollars.                    *" << endl << endl;
-    cout << "#########################################################" << endl << endl;
-
-    cout << "               Have fun playing!" << endl << endl;
+    cout << "                    Have fun playing!" << endl << endl;
 }
 
 void ShowInformation(unsigned long Money) {
 
-    cout << "You have: " << Money << " dollars." << endl;
+    cout << "\nYou have: " << Money << " dollars." << endl;
 }
 
 short GetBet(void) {
@@ -111,10 +113,8 @@ short GetBet(void) {
      else if ((BetType != 1) && (BetType != 2) && (BetType != 3) && (BetType != 4)) {
         cout << "That is an invalid input. Please insert a valid input:" << endl;
         cin >> BetType;
-    }
-
-    else {
-        return 0;
+        
+        return BetType;
     }
 }
 
