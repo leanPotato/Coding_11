@@ -43,14 +43,9 @@ int main(void) {
 
             ShowInformation(Money);
 
-            do {
-                
-                Bet = GetBet();
-
-            } while (Bet == 0);
-
-            BetMoney = GetAmount();
-            DiceValue = DoDiceThrow();
+            Bet         = GetBet();
+            BetMoney    = GetAmount();
+            DiceValue   = DoDiceThrow();
             MoneyEarned = DoMoneyCalc(DiceValue, Bet, BetMoney);
 
             Money -= BetMoney;
@@ -141,20 +136,15 @@ void ShowInformation(unsigned long Money) {
 short GetBet(void) {
 
     char BetType;
+    
+    do {
 
-    cout << "Enter type of bet (1 = '2/12' 2 = '4/10' 3 = '6/8' 4 = '3/9'): ";
-    cin >> BetType;
+        cout << "Enter type of bet (1 = '2/12' 2 = '4/10' 3 = '6/8' 4 = '3/9'): ";
+        cin >> BetType
 
-    if ((BetType == 1) || (BetType == 2) || (BetType == 3) || (BetType == 4)) {
+    } while (BetType != 1 && BetType != 2 && BetType != 3 && BetType != 4);
 
-        return BetType;
-
-    } else {
-
-        cout << "\nPlease enter a valid number.\n";
-        return 0;
-
-    }
+    return BetType;
 
 }
 
