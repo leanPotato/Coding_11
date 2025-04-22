@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <chrono>
+#include <string>
 
 using namespace std;
 using std::chrono::duration_cast;
@@ -19,9 +20,9 @@ using std::chrono::microseconds;
 
 void ShowIntroScreen(void);
 void ShowInformation(unsigned long Money);
-short GetBet(void);
+int GetBet(void);
 short DoDiceThrow(void);
-unsigned short DoMoneyCalc(short DiceValue, short Bet, short BetMoney);
+unsigned short DoMoneyCalc(short DiceValue, int Bet, short BetMoney);
 unsigned long GetAmount(void);
 
 int main(void) {
@@ -30,7 +31,7 @@ int main(void) {
     unsigned long Money;
 
     short DiceValue;
-    short Bet;
+    int Bet;
     short BetMoney;
     char isRepeat = 'y';
 
@@ -133,17 +134,34 @@ void ShowInformation(unsigned long Money) {
     cout << endl;
 }
 
-short GetBet(void) {
+int GetBet(void) {
 
-    char BetType;
-    
-    do {
+    int BetType;
+    string input;
+
+    bool isWrong = false;  // Flag to check if input is correct
+
+    do {    
 
         cout << "Enter type of bet (1 = '2/12' 2 = '4/10' 3 = '6/8' 4 = '3/9'): ";
-        cin >> BetType
+        cin >> input;  // Store input into a string as text input
 
-    } while (BetType != 1 && BetType != 2 && BetType != 3 && BetType != 4);
+        // Check if input is correct or not
+        if (input != "1" && input != "2" && input != "3" && input != "4") {
+            
+            cout << "\nPlease enter again, because only numbers 1,2,3,4 are allowed\n";
+            isWrong = true;
 
+        } else {
+            
+            isWrong = false;  // Reset isWrong to false
+        
+        }
+
+    } while (isWrong == true);  // Flags it
+    
+    // Convert text to integer after checking it is 1,2,3,4
+    BetType = stoi(input);
     return BetType;
 
 }
@@ -167,39 +185,39 @@ short DoDiceThrow(void) {
     return DiceValue;
 }
 
-unsigned short DoMoneyCalc(short DiceValue, short Bet, short BetMoney) {
+unsigned short DoMoneyCalc(short DiceValue, int Bet, short BetMoney) {
 
     unsigned long MoneyEarned = 0;
 
     switch (Bet) {
 
-    case 1:
-        if ((DiceValue == 2) || (DiceValue == 12)) {
-            MoneyEarned = BetMoney * 5;
-        }
-        break;
+        case 1:
+            if ((DiceValue == 2) || (DiceValue == 12)) {
+                MoneyEarned = BetMoney * 5;
+            }
+            break;
 
-    case 2:
-        if ((DiceValue == 4) || (DiceValue == 10)) {
-            MoneyEarned = BetMoney * 2.5;
-        }
-        break;
+        case 2:
+            if ((DiceValue == 4) || (DiceValue == 10)) {
+                MoneyEarned = BetMoney * 2.5;
+            }
+            break;
 
-    case 3:
-        if ((DiceValue == 6) || (DiceValue == 8)) {
-            MoneyEarned = BetMoney * 1.5;
-        }
-        break;
+        case 3:
+            if ((DiceValue == 6) || (DiceValue == 8)) {
+                MoneyEarned = BetMoney * 1.5;
+            }
+            break;
 
-    case 4:
-        if ((DiceValue == 3) || (DiceValue == 9)) {
-            MoneyEarned = BetMoney * 1.7;
-        }
-        break;
+        case 4:
+            if ((DiceValue == 3) || (DiceValue == 9)) {
+                MoneyEarned = BetMoney * 1.7;
+            }
+            break;
 
-    default:
-        MoneyEarned = 0;
-        break;
+        default:
+            MoneyEarned = 0;
+            break;
     }
 
     return MoneyEarned;
