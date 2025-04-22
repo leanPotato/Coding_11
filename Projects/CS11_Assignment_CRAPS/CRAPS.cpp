@@ -22,8 +22,8 @@ void ShowIntroScreen(void);
 void ShowInformation(unsigned long Money);
 int GetBet(void);
 short DoDiceThrow(void);
-unsigned short DoMoneyCalc(short DiceValue, int Bet, short BetMoney);
-unsigned long GetAmount(void);
+unsigned short DoMoneyCalc(short DiceValue, int Bet, int BetMoney);
+int GetAmount(void);
 
 int main(void) {
 
@@ -32,7 +32,7 @@ int main(void) {
 
     short DiceValue;
     int Bet;
-    short BetMoney;
+    int BetMoney;
     char isRepeat = 'y';
 
     ShowIntroScreen();
@@ -149,7 +149,7 @@ int GetBet(void) {
         // Check if input is correct or not
         if (input != "1" && input != "2" && input != "3" && input != "4") {
             
-            cout << "\nPlease enter again, because only numbers 1,2,3,4 are allowed\n";
+            cout << "\nPlease enter again, because only numbers 1,2,3,4 are allowed.\n\n";
             isWrong = true;
 
         } else {
@@ -185,7 +185,7 @@ short DoDiceThrow(void) {
     return DiceValue;
 }
 
-unsigned short DoMoneyCalc(short DiceValue, int Bet, short BetMoney) {
+unsigned short DoMoneyCalc(short DiceValue, int Bet, int BetMoney) {
 
     unsigned long MoneyEarned = 0;
 
@@ -223,18 +223,46 @@ unsigned short DoMoneyCalc(short DiceValue, int Bet, short BetMoney) {
     return MoneyEarned;
 }
 
-unsigned long GetAmount(void) {     
+int GetAmount(void) {     
 
-    unsigned short BetAmount;
+    int BetAmount;
+    string input;
+    bool isWrong = false;  // Flag to check if input is correct
 
-    cout << "Enter amount to bet (min 10 - max 100): ";
-    cin >> BetAmount;
+    do {
+
+        cout << "Enter amount to bet (min 10 - max 100): ";
+        cin >> input;  // Store input into a string as text input
+
+        // Check if input is correct or not
+        if (input >= "1") {
+
+            isWrong = false;  // Reset isWrong to false
+
+        } else if (input <= "100") {
+
+            isWrong = false;  // Reset isWrong to false
+
+        } else {
+
+            cout << "\nPlease enter again, because bet amount needs to be between 1 and 100.\n\n";
+            isWrong = true;
+
+        }
+
+    } while (isWrong == true);  // Flags it
+
+        // Convert text to integer after checking it is between 1 and 100
+        BetAmount = stoi(input);
 
     if (BetAmount < 10) {
+
         BetAmount = 10;
-    }
-    if (BetAmount > 100) {
+
+    } if (BetAmount > 100) {
+
         BetAmount = 100;
+
     }
 
     return BetAmount;
