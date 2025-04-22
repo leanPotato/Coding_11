@@ -26,7 +26,7 @@ short DoDiceThrow(void);
 unsigned short DoMoneyCalc(short Dice, short Bet, short BetMoney);
 unsigned long GetAmount(void);
 
-int main(void) {
+int main(void)                                              // Main function
 
     unsigned long MoneyEarned;
     unsigned long Money;
@@ -70,7 +70,7 @@ int main(void) {
 
     while (Money > 100);
     cout << "\n########################################################################";
-    cout << "\n*  Looks like you haven't had much luck. Keep $" << Money << " for the ride home.  *";
+    cout << "\n*  Looks like you haven't had much luck. Keep $" << Money << " for the ride home.    *";
     cout << "\n*  Don't tell the cops and we won't tell your partner...               *\n";
     cout << "########################################################################";
     return 0;
@@ -102,15 +102,15 @@ void ShowInformation(unsigned long Money) {
     cout << "\nYou have: " << Money << " dollars." << endl;
 }
 
-short GetBet(void) {
-    unsigned short BetType;
+int GetBet(void) {
+    unsigned int BetType;
     cout << "Enter type of bet (1 = '2/12' 2 = '4/10' 3 = '6/8' 4 = '3/9'): ";
     cin >> BetType;
 
     if ((BetType == 1) || (BetType == 2) || (BetType == 3) || (BetType == 4)) {
         return BetType;
     }
-     else if ((BetType != 1) && (BetType != 2) && (BetType != 3) && (BetType != 4)) {
+     else {
         cout << "That is an invalid input. Please insert a valid input:" << endl;
         cin >> BetType;
         
@@ -178,7 +178,7 @@ unsigned short DoMoneyCalc(short Dice, short Bet, short BetMoney) {
 
 unsigned long GetAmount(void) {
 
-    unsigned short BetAmount;
+    unsigned int BetAmount;
 
     cout << "Enter amount to bet (min 10 - max 100): ";
     cin >> BetAmount;
@@ -189,6 +189,9 @@ unsigned long GetAmount(void) {
     if (BetAmount > 100) {
         BetAmount = 100;
     }
+    else {
+        cout << "That is an invalid input. Please insert a valid input:" << endl;
+        cin >> BetAmount;
 
     return BetAmount;
 }
