@@ -26,7 +26,7 @@ short DoDiceThrow(void);
 unsigned short DoMoneyCalc(short Dice, short Bet, short BetMoney);
 unsigned long GetAmount(void);
 
-int main(void)                                              // Main function
+int main(void) {                                           // Main function
 
     unsigned long MoneyEarned;
     unsigned long Money;
@@ -111,7 +111,8 @@ char GetBet(void) {
         return BetType;
     }
      else {
-        cout << "That is an invalid input. Please insert a valid input:" << endl;
+        cout << "That is an invalid input. Please insert a valid input:";
+        cout << "Enter type of bet (1 = '2/12' 2 = '4/10' 3 = '6/8' 4 = '3/9'): ";
         cin >> BetType;
         
         return BetType;
