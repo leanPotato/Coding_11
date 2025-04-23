@@ -239,7 +239,7 @@ int GetAmount(void) {
 
             isWrong = false;  // Reset isWrong to false
 
-        } else if (input <= "100") {
+        } if (input <= "100") {
 
             isWrong = false;  // Reset isWrong to false
 
