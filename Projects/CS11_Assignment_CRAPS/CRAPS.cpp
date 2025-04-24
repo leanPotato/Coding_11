@@ -21,8 +21,9 @@ using std::chrono::microseconds;
 void ShowIntroScreen(void);
 void ShowInformation(unsigned long Money);
 int GetBet(void);
-short DoDiceThrow(void);
-unsigned short DoMoneyCalc(short DiceValue, int Bet, int BetMoney);
+short DoDiceThrow1(void);
+short DoDiceThrow2(void);
+unsigned short DoMoneyCalc(short DiceValue1, short DiceValue2, int Bet, int BetMoney);
 int GetAmount(void);
 
 int main(void) {
@@ -31,6 +32,8 @@ int main(void) {
     unsigned long Money;
 
     short DiceValue;
+    short DiceValue1;
+    short DiceValue2;
     int Bet;
     int BetMoney;
     char isRepeat = 'y';
@@ -46,20 +49,23 @@ int main(void) {
 
             Bet         = GetBet();
             BetMoney    = GetAmount();
-            DiceValue   = DoDiceThrow();
-            MoneyEarned = DoMoneyCalc(DiceValue, Bet, BetMoney);
+            DiceValue1  = DoDiceThrow1();
+            DiceValue2  = DoDiceThrow2();
+            MoneyEarned = DoMoneyCalc(DiceValue1, DiceValue2, Bet, BetMoney);
 
             Money -= BetMoney;
 
+            DiceValue = (DiceValue1 + DiceValue2);
+
             if (MoneyEarned == 0) {
 
-                cout << "You lost. Number was: " << DiceValue;
+                cout << "You lost. The Number was: " << DiceValue << " and the two dice were: " << DiceValue1 << " and " << DiceValue2 << ".";
                 cout << endl << endl;
 
             } else {
 
                 cout << "You won " << MoneyEarned - BetMoney;
-                cout << " dollars. Number was: " << DiceValue;
+                cout << " dollars. The Number was: " << DiceValue << " and the two dice were: " << DiceValue1 << " and " << DiceValue2 << ".";
                 cout << endl << endl;
 
                 Money += MoneyEarned;
@@ -166,28 +172,35 @@ int GetBet(void) {
 
 }
 
-short DoDiceThrow(void) {
+short DoDiceThrow1(void) {
 
-    short DiceValue;
     short DiceValue1;
-    short DiceValue2;
 
     srand(duration_cast<microseconds>(system_clock::now().time_since_epoch()).count());
     int randomNumber1 = rand();
     DiceValue1 = (randomNumber1 % 6) + 1;
 
+    return DiceValue1;
+}
+
+short DoDiceThrow2(void) {
+
+    short DiceValue2;
+
     srand(duration_cast<microseconds>(system_clock::now().time_since_epoch()).count());
     int randomNumber2 = rand();
     DiceValue2 = (randomNumber2 % 6) + 1;
 
-    DiceValue = (DiceValue1 + DiceValue2);
+    return DiceValue2;
 
-    return DiceValue;
 }
 
-unsigned short DoMoneyCalc(short DiceValue, int Bet, int BetMoney) {
+unsigned short DoMoneyCalc(short DiceValue1, short DiceValue2, int Bet, int BetMoney) {
 
+    short DiceValue;
     unsigned long MoneyEarned = 0;
+    
+    DiceValue = (DiceValue1 + DiceValue2);
 
     switch (Bet) {
 
