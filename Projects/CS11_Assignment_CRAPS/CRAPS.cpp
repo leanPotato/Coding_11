@@ -1,4 +1,4 @@
-cd cd/****************************************************************************************
+/****************************************************************************************
 *                                                                                       *
 *	Title:   CS11 CRAPS assignment                                                      *
 *	Author:  Felipe                                                                     *
@@ -236,43 +236,46 @@ unsigned short DoMoneyCalc(short DiceValue1, short DiceValue2, int Bet, int BetM
     return MoneyEarned;
 }
 
-int GetAmount(void) {     
+int GetAmount(void) {
 
     int BetAmount;
-    string input;
-    bool isWrong = false;  // Flag to check if input is correct
+    bool isWrong;  // Flag to check if input is correct
 
     do {
 
-        cout << "Enter amount to bet (min 10 - max 100): ";
-        cin >> input;  // Store input into a string as text input
+        cout << "\nEnter amount to bet (min 10 - max 100): ";
+        cin >> BetAmount;  // Store input into a string as text input
 
         // Check if input is correct or not
-        if (input >= "1") {
+        if (cin.fail()) {
 
-            isWrong = false;  // Reset isWrong to false
+            cout << "\nBruh thats not a number.\n";
+            isWrong = true;  // Reset isWrong to false
+            cin.clear();
+            cin.ignore(1000, '\n');
 
-        } if (input <= "100") {
+        }
+        else if (BetAmount < 10 || BetAmount > 100) {
 
-            isWrong = false;  // Reset isWrong to false
+            cout << "\nNumber has to be between 10 and 100.\n";
+            isWrong = true;  // Reset isWrong to false
 
-        } else {
+        }
+        else {
 
-            cout << "\nPlease enter again, because bet amount needs to be between 1 and 100.\n\n";
-            isWrong = true;
+            isWrong = false;
 
         }
 
     } while (isWrong == true);  // Flags it
 
-        // Convert text to integer after checking it is between 1 and 100
-        BetAmount = stoi(input);
-
     if (BetAmount < 10) {
 
         BetAmount = 10;
 
-    } if (BetAmount > 100) {
+    }
+
+    if (BetAmount > 100) {
 
         BetAmount = 100;
 
