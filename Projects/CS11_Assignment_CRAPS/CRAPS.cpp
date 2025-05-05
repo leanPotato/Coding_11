@@ -39,11 +39,22 @@ int main(void) {
     char isRepeat = 'y';
 
     ShowIntroScreen();
-    Money = 1000;
 
     do {
 
         do {
+
+            cout << "How much money would you like start the game with? (Recommended 10 - 1000): ";
+            cin >> Money;
+
+            while (cin.fail() || Money < 10) {
+
+                cin.clear();
+                cin.ignore(1000, '\n');
+                cout << "Please enter a valid number with a minimum of 10 dollars: ";
+                cin >> Money;
+
+            }
 
             ShowInformation(Money);
 
@@ -81,13 +92,13 @@ int main(void) {
 
         if (isRepeat != 'y' && isRepeat != 'Y') {
 
-            cout << "\nThanks for watching!";  // Output thank you message
+            cout << "\nThanks for playing!";  // Output thank you message
             cout << "\n\n####################################################\n\n";
             system("pause");  // Pause until user presses any key
 
         } else {
 
-            cout << "\n####################################################\n";  // Display a barrier for new line
+            cout << "\n####################################################\n" << endl;  // Display a barrier for new line
 
         }
 
@@ -109,8 +120,6 @@ void ShowIntroScreen(void) {
     cout << "**************************************************" << endl;
     cout << "*                                                *" << endl;
     cout << "* ---------------- HOW TO PLAY ----------------- *" << endl;
-    cout << "*                                                *" << endl;
-    cout << "*    YOU HAVE 1000 DOLLARS TO START GAMBLING!    *" << endl;
     cout << "*                                                *" << endl;
     cout << "*       You can do three different bets.         *" << endl;
     cout << "* You can bet on numbers 2 or 12 which will give *" << endl;
@@ -136,7 +145,8 @@ void ShowIntroScreen(void) {
 }
 
 void ShowInformation(unsigned long Money) {
-    cout << "You have : " << Money << " dollars.";
+    cout << "\nYou have : " << Money << " dollars.\n" << endl;
+    cout << "*************************************" << endl;
     cout << endl;
 }
 
