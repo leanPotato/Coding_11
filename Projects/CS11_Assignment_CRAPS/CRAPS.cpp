@@ -42,19 +42,19 @@ int main(void) {
 
     do {
 
-        do {
+        cout << "How much money would you like start the game with? (Recommended 10 - 1000): ";
+        cin >> Money;
 
-            cout << "How much money would you like start the game with? (Recommended 10 - 1000): ";
+        while (cin.fail() || Money < 10) {
+
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Please enter a valid number with a minimum of 10 dollars: ";
             cin >> Money;
 
-            while (cin.fail() || Money < 10) {
+        }
 
-                cin.clear();
-                cin.ignore(1000, '\n');
-                cout << "Please enter a valid number with a minimum of 10 dollars: ";
-                cin >> Money;
-
-            }
+        do {
 
             ShowInformation(Money);
 
@@ -278,18 +278,6 @@ int GetAmount(void) {
         }
 
     } while (isWrong == true);  // Flags it
-
-    if (BetAmount < 10) {
-
-        BetAmount = 10;
-
-    }
-
-    if (BetAmount > 100) {
-
-        BetAmount = 100;
-
-    }
 
     return BetAmount;
 }
