@@ -24,7 +24,7 @@ int GetBet(void);
 short DoDiceThrow1(void);
 short DoDiceThrow2(void);
 unsigned short DoMoneyCalc(short DiceValue1, short DiceValue2, int Bet, int BetMoney);
-int GetAmount(void);
+int GetAmount(short Money);
 
 int main(void) {
 
@@ -51,7 +51,6 @@ int main(void) {
             cin.ignore(1000, '\n');
             cout << "Please enter a valid number with a minimum of 10 dollars: ";
             cin >> Money;
-
         }
 
         do {
@@ -59,7 +58,7 @@ int main(void) {
             ShowInformation(Money);
 
             Bet         = GetBet();
-            BetMoney    = GetAmount();
+            BetMoney    = GetAmount(Money);
             DiceValue1  = DoDiceThrow1();
             DiceValue2  = DoDiceThrow2();
             MoneyEarned = DoMoneyCalc(DiceValue1, DiceValue2, Bet, BetMoney);
@@ -145,7 +144,7 @@ void ShowIntroScreen(void) {
 }
 
 void ShowInformation(unsigned long Money) {
-    cout << "\nYou have : " << Money << " dollars.\n" << endl;
+    cout << "You have : " << Money << " dollars.\n" << endl;
     cout << "*************************************" << endl;
     cout << endl;
 }
@@ -246,7 +245,7 @@ unsigned short DoMoneyCalc(short DiceValue1, short DiceValue2, int Bet, int BetM
     return MoneyEarned;
 }
 
-int GetAmount(void) {
+int GetAmount(short Money) {
 
     int BetAmount;
     bool isWrong;  // Flag to check if input is correct
@@ -265,9 +264,9 @@ int GetAmount(void) {
             cin.ignore(1000, '\n');
 
         }
-        else if (BetAmount < 10 || BetAmount > 100) {
+        else if (BetAmount < 10 || BetAmount > Money) {
 
-            cout << "\nNumber has to be between 10 and 100.\n";
+            cout << "\nNumber has to be between 10 and" << Money << ".\n";
             isWrong = true;  // Reset isWrong to false
 
         }
