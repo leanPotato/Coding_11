@@ -1,0 +1,57 @@
+/****************************************************************************************
+*                                                                                       *
+*	Title:   CS11 Phone Book                                                            *
+*	Author:  Felipe                                                                     *
+*	Date:    05/12/2025                                                                 *
+*	Purpose: The program is to make a phone book using arrays                           *
+*                                                                                       *
+*****************************************************************************************/
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int lookupName(string targetName, string names[], string phoneNumbers[], int 7);
+
+int main() {
+
+    string names[]        = { "Micheal Myers", "Ash Williams", "Jack Torrance", "Freddy Krueger" "Albert Einstein" , "Issac Newton" , "Steve Jobs" };
+
+    string phoneNumbers[] = { "333-8000" , "333-2323", "333-6150", "339-7970", "888 8888", "999 9999", "777 7777" };
+
+    string targetName, targetPhone;
+    char c;
+    
+    do {
+
+        cout << "Enter a name to find the corresponding phone number." << endl;
+
+        getline(cin, targetName);
+        targetPhone = lookupName(targetName, names, phoneNumbers, 7);
+
+        if (targetPhone.length() > 0) {
+
+            cout << "The number is: " << targetPhone << endl;
+
+        }
+        else
+
+            cout << "Name not found. " << endl;
+
+        }
+
+        cout << "look up another name? (y/n)" << endl;
+
+        cin >> c;
+        cin.ignore();
+
+    } while (c == 'y');
+
+    return 0;
+}
+
+int lookupName(string targetName, string names[], string phoneNumbers[], int 7) {
+
+    
+}
