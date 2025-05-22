@@ -13,37 +13,40 @@
 
 using namespace std;
 
-string showSeating(string fourRowsSevenAisles[][]);
-string addPassenger();
+int showSeating(int fourRowsSevenAisles[][]);
+void showIntroScreen();
+/*string addPassenger();
 
 
 
 string lookupRow(string targetRow, string row[], string aisle[], int size);
-string lookupAisle(string targetRow, string row[], string aisle[], int size);
+string lookupAisle(string targetRow, string row[], string aisle[], int size);*/
 
 int main() {
 
-    char Quit = 'q';
-    char Add  = 'a';
-    char Show = 's';
+    int  NUM_ROWS   = 4;
+    int  NUM_AISLES = 7;
+    char Quit       = 'q';
+    char Add        = 'a';
+    char Show       = 's';
 
-    string fourRowsSevenAisles[4][7] = { {1, 2, 3, 4}, {1, 2, 3, 4}, {1, 2, 3, 4}, /
-                                         {1, 2, 3, 4}, {1, 2, 3, 4}, {1, 2, 3, 4} , {1, 2, 3, 4} };
+    int fourRowsSevenAisles[4][7] = { { {1, 2, 3, 4}, {1, 2, 3, 4}, {1, 2, 3, 4}, {1, 2, 3, 4}, {1, 2, 3, 4}, {1, 2, 3, 4} , {1, 2, 3, 4} } };
 
-    char c;
+    char cmd;
 
     do {
 
-        while ((cmd = cin.get()) != Quit) {
+        showIntroScreen();
 
+        while ((cmd = cin.get()) != Quit) {
             switch (cmd) {
             case Show: 
-                showSeating();
-                main();
+                showSeating(fourRowsSevenAisles);
+                showIntroScreen();
                 break;
             case Add:
                 addPassenger();
-                main();
+                showIntroScreen();
                 break;
             default:
                 cout << "Please type a, s, or q.";
@@ -54,16 +57,7 @@ int main() {
 
         }
 
-        cout << "These are the available seats:" << endl;
-        cout << row[0] << "" << aisle[0] << "" << aisle[1] << "" << aisle[2] << "" << aisle[3] << "" << endl;
-        cout << row[1] << "" << aisle[0] << "" << aisle[1] << "" << aisle[2] << "" << aisle[3] << "" << endl;
-        cout << row[2] << "" << aisle[0] << "" << aisle[1] << "" << aisle[2] << "" << aisle[3] << "" << endl;
-        cout << row[3] << "" << aisle[0] << "" << aisle[1] << "" << aisle[2] << "" << aisle[3] << "" << endl;
-        cout << row[4] << "" << aisle[0] << "" << aisle[1] << "" << aisle[2] << "" << aisle[3] << "" << endl;
-        cout << row[5] << "" << aisle[0] << "" << aisle[1] << "" << aisle[2] << "" << aisle[3] << "" << endl;
-        cout << row[6] << "" << aisle[0] << "" << aisle[1] << "" << aisle[2] << "" << aisle[3] << "" << endl;
-
-        lookupName(targetRow, row[], aisle[], 4);
+       /*lookupName(targetRow, row[], aisle[], 4);
 
         getline(cin, targetRow);
         targetRow = lookupRow(targetRow, row, phoneNumbers, 7);
@@ -82,12 +76,36 @@ int main() {
             cin >> c;
             cin.ignore();
         }
-    } while (c == 'y');
+    } while (c == 'y');*/
 
     return 0;
 }
 
-string showSeating(string fourRowsSevenAisles[][]) {
+    
+    
+void showIntroScreen() {
 
-    EX
+    cout << endl;
+    cout << "           #############################################           " << endl;
+    cout << "           #                                           #           " << endl;
+    cout << "           #   WELCOME TO AIPLANE SEAT ARRANGER 1.0!   #           " << endl;
+    cout << "           #                                           #           " << endl;
+    cout << "           #############################################           " << endl;
+    cout << endl;
+
+
+}
+
+int showSeating(int fourRowsSevenAisles[][]) {
+
+    cout << "These are the available seats:" << endl;
+    cout << row[0] << "" << aisle[0] << "" << aisle[1] << "" << aisle[2] << "" << aisle[3] << "" << endl;
+    cout << row[1] << "" << aisle[0] << "" << aisle[1] << "" << aisle[2] << "" << aisle[3] << "" << endl;
+    cout << row[2] << "" << aisle[0] << "" << aisle[1] << "" << aisle[2] << "" << aisle[3] << "" << endl;
+    cout << row[3] << "" << aisle[0] << "" << aisle[1] << "" << aisle[2] << "" << aisle[3] << "" << endl;
+    cout << row[4] << "" << aisle[0] << "" << aisle[1] << "" << aisle[2] << "" << aisle[3] << "" << endl;
+    cout << row[5] << "" << aisle[0] << "" << aisle[1] << "" << aisle[2] << "" << aisle[3] << "" << endl;
+    cout << row[6] << "" << aisle[0] << "" << aisle[1] << "" << aisle[2] << "" << aisle[3] << "" << endl;
+
+    return;
 }
