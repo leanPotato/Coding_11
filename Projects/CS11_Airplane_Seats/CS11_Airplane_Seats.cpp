@@ -13,7 +13,8 @@
 
 using namespace std;
 
-void showSeating(char seats[NUM_ROWS][NUM_AISLES]);
+void showSeating (char seats[NUM_ROWS][NUM_AISLES]);
+void addPassenger(char seats[NUM_ROWS][NUM_SEATS]);
 void showIntroScreen();
 /*string addPassenger();
 
@@ -89,12 +90,27 @@ void showSeating(char seats[NUM_ROWS][NUM_AISLES]) {
     cout << "\n Showing seating chart (0 = Open seat, X = Taken seat):\n\n";
     cout << "         ";
 
-    for (int i = = ; i < NUM_SEATS; ++i) {
+    for (int i = 0; i < NUM_SEATS; ++i)
+    cout << " " << i + 1 << " ";
+    cout << "\n";
 
+    for (int i = 0; i < NUM_ROWS; ++i) {
+    
+    cout << "Row " << i + 1 << ": ";
+
+        for (int j = 0; j < NUM_SEATS; ++j) {
+
+            cout << "[" << seats[i][j] << "]";
+
+        }
+    cout << "\n";
 
     }
-    
-
-    return;
+    cout << "\n";
 }
 
+
+void addPassenger(char seats[NUM_ROWS][NUM_SEATS]) {
+
+
+}
