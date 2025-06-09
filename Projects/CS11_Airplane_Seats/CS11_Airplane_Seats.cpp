@@ -13,9 +13,9 @@
 
 using namespace std;
 
-void showSeating (char seats[][4], int rows, int cols);
-bool addPassenger(char seats[][4], int rows, int cols);
-bool isFull(char seats[][4], int rows, int cols);
+void showSeating (char seats[][4], int rows, int colmn);
+void addPassenger(char seats[][4], int rows, int colmn);
+bool isFull(char seats[][4], int rows, int colmn);
 void showIntroScreen();
 
 int main() {
@@ -28,10 +28,10 @@ int main() {
     char Add = 'a';
     char Show = 's';
 
-    for (int i = 0; i < NUM_ROWS; ++i) {
+    for (int r = 0; r < NUM_ROWS; ++r) {
 
-        for (int j = 0; j < NUM_SEATS; ++j) {
-            seats[i][j] = '0';
+        for (int c = 0; c < NUM_SEATS; ++c) {
+            seats[r][c] = 'A' + c;
         }
     }
 
@@ -46,15 +46,18 @@ int main() {
 
         switch (cmd) {
         case 's':
-            showSeating(seats);
+            showSeating(seats, NUM_ROWS, NUM_SEATS);
             showIntroScreen();
             break;
         case 'a':
-            addPassenger(seats);
-            showIntroScreen();
+            if (isFull(seats, NUM_ROWS, NUM_SEATS)) {
+                cout << "All seats are already taken.\n";
+            } else {
+                addPassenger(seats, NUM_ROWS, NUM_SEATS);
+            }
             break;
         case 'q':
-            cout << "Exiting program\n";
+            cout << "Thanks for checking it out!\n";
             break;
         default:
             cout << "Please type a, s, or q.";
@@ -65,8 +68,6 @@ int main() {
 
     return 0;
 }
-
-
 
 void showIntroScreen() {
 
@@ -81,51 +82,57 @@ void showIntroScreen() {
 
 }
 
-void showSeating (char seats[][4], int rows, int cols); {
+void showSeating(char seats[][4], int rows, int colmn); {
 
     cout << "\n Showing seating chart (0 = Open seat, X = Taken seat):\n\n";
     cout << "         ";
 
-    for (int i = 0; i < NUM_SEATS; ++i)
-    cout << " " << i + 1 << " ";
-    cout << "\n";
-
-    for (int i = 0; i < NUM_ROWS; ++i) {
-    
-        cout << "Row " << i + 1 << ": ";
-
-        for (int j = 0; j < NUM_SEATS; ++j) {
-
-            cout << "[" << seats[i][j] << "]";
-
+    for (int r = 0; r < rows; ++r) {
+        cout << r + 1;
+        for (int c = 0; c < colmn; ++c) {
+            cout << seats[r][c];
         }
-        cout << "\n";
-
+        cout << endl;
     }
-    cout << "\n";
 }
 
 
-bool addPassenger(char seats[][4], int rows, int cols) {
+void addPassenger(char seats[][4], int rows, int colmn) {
 
-    int row, seat;
-    cout << "Enter row number (1-" << NUM_ROWS << "): ";
-    cin >> row;
-    cout << "Enter seat number (1-" << NUM_SEATS << "): ";
-    cin >> seat;
+    string input;
+    cout << "Type the seat you would like and we will check if its available! (exp: 1A, 2B): ";
+    cin >> input;
 
-    row -= 1;
-    seat -= 1;
+    int row = 0;
+    char seatLet;
 
-    if (row < 0 || row >= NUM_ROWS || seat < 0 || seat >= NUM_SEATS) {
-        cout << "Invalid seat selection.\n";
+    if (input.length == 2 && (input[0] >= '0') && (input[0] <= '9') {
+
+        row = input[0] - '0';
+        seatLet = input[1];
+    }
+    else {
+
+        cout << "Input is invalid please try again.\n";
         return;
     }
 
-    if (seats[row][seat] == 'X') {
-        cout << "Seat already taken.\n";
-    } else {
-        seats[row][seat] = 'X';
-        cout << "Passenger added to Row " << row + 1 << ", Seat " << seat + 1 << ".\n";
+    if (row < 1 || row > rows || seatLet < 'A' || seatLet >= 'A' + colmn) {
+
+        cout << "Input is invalid please try again.\n";
+        return;
+    }
+
+    int rowNum = row - '1';
+    int seatNum = seatLet - 'A';
+
+    if (seats[rowNum][seatNum] == 'X') {
+
+        cout << "Seat is already taken";
+    }
+    else {
+
+        seats[rowNum][seatNum] == 'X';
+        cout << "Seat " << input << " has been assigned to you.";
     }
 }
