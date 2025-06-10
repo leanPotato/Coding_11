@@ -133,6 +133,16 @@ void addPassenger(char seats[][4], int rows, int colmn) {
     else {
 
         seats[rowNum][seatNum] == 'X';
-        cout << "Seat " << input << " has been assigned to you.";
+        cout << "Seat " << input << " has been assigned to you.\n";
     }
+}
+
+bool isFull(char seats[][4], int rows, int colmn) {
+
+    for (int r = 0; r < rows; ++r)
+        for (int c = 0; c < colmn; ++c)
+            if (seats[r][c] != 'X')
+                return false;
+
+    return true;
 }
