@@ -20,13 +20,15 @@ void showIntroScreen();
 
 int main() {
 
-    const int  NUM_ROWS = 4;
-    const int  NUM_SEATS = 7;
+    const int  NUM_ROWS = 7;
+    const int  NUM_SEATS = 4;
     
     char seats[NUM_ROWS][NUM_SEATS];
     char Quit = 'q';
     char Add = 'a';
     char Show = 's';
+
+    showIntroScreen();
 
     for (int r = 0; r < NUM_ROWS; ++r) {
 
@@ -39,15 +41,12 @@ int main() {
 
     do {
 
-        showIntroScreen();
-
         cout << "\nType what you want to do (a = add passenger, s = show seating available, q = quit program): ";
         cin >> cmd;
 
         switch (cmd) {
         case 's':
             showSeating(seats, NUM_ROWS, NUM_SEATS);
-            showIntroScreen();
             break;
         case 'a':
             if (isFull(seats, NUM_ROWS, NUM_SEATS)) {
@@ -57,7 +56,7 @@ int main() {
             }
             break;
         case 'q':
-            cout << "Thanks for checking it out!\n";
+            cout << "Thanks for checking this seating arrangment program!\n";
             break;
         default:
             cout << "Please type a, s, or q.";
@@ -82,15 +81,15 @@ void showIntroScreen() {
 
 }
 
-void showSeating(char seats[][4], int rows, int colmn); {
+void showSeating(char seats[][4], int rows, int colmn) {
 
-    cout << "\n Showing seating chart (0 = Open seat, X = Taken seat):\n\n";
-    cout << "         ";
+    cout << "\nShowing seating chart (0 = Open seat, X = Taken seat):\n\n";
+    cout << "";
 
     for (int r = 0; r < rows; ++r) {
-        cout << r + 1;
+        cout << r + 1 << ' ' << ' ';
         for (int c = 0; c < colmn; ++c) {
-            cout << seats[r][c];
+            cout << seats[r][c] << ' ';
         }
         cout << endl;
     }
@@ -100,13 +99,13 @@ void showSeating(char seats[][4], int rows, int colmn); {
 void addPassenger(char seats[][4], int rows, int colmn) {
 
     string input;
-    cout << "Type the seat you would like and we will check if its available! (exp: 1A, 2B): ";
+    cout << "Type the seat you would like and we will check if its available! (e.g. : 1A, 2B): ";
     cin >> input;
 
     int row = 0;
     char seatLet;
 
-    if (input.length == 2 && (input[0] >= '0') && (input[0] <= '9') {
+    if (input.length() == 2 && (input[0] >= '0') && (input[0] <= '9')) {
 
         row = input[0] - '0';
         seatLet = input[1];
@@ -123,7 +122,7 @@ void addPassenger(char seats[][4], int rows, int colmn) {
         return;
     }
 
-    int rowNum = row - '1';
+    int rowNum = row - 1;
     int seatNum = seatLet - 'A';
 
     if (seats[rowNum][seatNum] == 'X') {
@@ -132,7 +131,7 @@ void addPassenger(char seats[][4], int rows, int colmn) {
     }
     else {
 
-        seats[rowNum][seatNum] == 'X';
+        seats[rowNum][seatNum] = 'X';
         cout << "Seat " << input << " has been assigned to you.\n";
     }
 }
