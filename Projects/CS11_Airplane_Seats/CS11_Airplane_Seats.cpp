@@ -44,6 +44,16 @@ int main() {
         cout << "\nType what you want to do (a = add passenger, s = show seating available, q = quit program): ";
         cin >> cmd;
 
+        for (cmd) {
+
+            if (!isalpha(cmd)) {
+
+                cin.clear();
+                cin.ignore(1000, '\n');
+                cout << "Invalid, please only type what you want to do (a = add passenger, s = show seating available, q = quit program): ";
+            }
+        }
+
         switch (cmd) {
         case 's':
             showSeating(seats, NUM_ROWS, NUM_SEATS);
