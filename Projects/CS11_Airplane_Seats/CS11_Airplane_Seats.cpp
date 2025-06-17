@@ -20,6 +20,8 @@ void showIntroScreen();
 
 int main() {
 
+    char cmd;
+    string input;
     const int  NUM_ROWS = 7;
     const int  NUM_SEATS = 4;
     
@@ -37,22 +39,20 @@ int main() {
         }
     }
 
-    char cmd;
-
     do {
 
         cout << "\nType what you want to do (a = add passenger, s = show seating available, q = quit program): ";
-        cin >> cmd;
+        cin >> input;  // Recieves the input the user puts in
 
-        for (cmd) {
 
-            if (!isalpha(cmd)) {
+        if (input.length() != 1 || (input != "a" && input != "s" && input != "q")) {
 
-                cin.clear();
-                cin.ignore(1000, '\n');
-                cout << "Invalid, please only type what you want to do (a = add passenger, s = show seating available, q = quit program): ";
-            }
+            cout << "This input is invalid. Please only input a, s, or q.\n";
+            continue;
+        
         }
+
+        cmd = tolower(input[0]);  // This changes the input to uppercase incase it was inputed as lowercase
 
         switch (cmd) {
         case 's':
@@ -67,9 +67,6 @@ int main() {
             break;
         case 'q':
             cout << "Thanks for checking this seating arrangment program!\n";
-            break;
-        default:
-            cout << "Please type a, s, or q.";
             break;
         }
 
