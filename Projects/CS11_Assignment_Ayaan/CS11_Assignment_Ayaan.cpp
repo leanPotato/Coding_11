@@ -70,7 +70,7 @@ int main(void) {                                           // Main function
 
     while (Money > 100);
     cout << "\n########################################################################";
-    cout << "\n*  Looks like you haven't had much luck. Keep $" << Money << " for the ride home.     *";
+    cout << "\n*  Looks like you haven't had much luck. Keep $" << Money << " for the ride home.  *";
     cout << "\n*  Don't tell the cops and we won't tell your partner...               *\n";
     cout << "########################################################################";
     return 0;
