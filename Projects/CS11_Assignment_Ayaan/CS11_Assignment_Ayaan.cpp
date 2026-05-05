@@ -70,7 +70,7 @@ int main(void) {                                           // Main function
 
     while (Money > 100);
     cout << "\n########################################################################";
-    cout << "\n*  Looks like you haven't had much luck. Keep $" << Money << " for the ride home.  *";
+    cout << "\n*  Looks like you haven't had much luck. Keep $" << Money << " for the ride home.     *";
     cout << "\n*  Don't tell the cops and we won't tell your partner...               *\n";
     cout << "########################################################################";
     return 0;
@@ -103,7 +103,7 @@ void ShowInformation(unsigned long Money) {
 }
 
 char GetBet(void) {
-    unsigned char BetType;
+    int BetType;
     cout << "Enter type of bet (1 = '2/12' 2 = '4/10' 3 = '6/8' 4 = '3/9'): ";
     cin >> BetType;
 
